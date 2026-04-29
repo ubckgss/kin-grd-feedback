@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIN Graduate Research Day — Feedback Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A47;
+    --navy-mid: #2C3E50;
+    --slate: #4A6274;
+    --gold: #F0B429;
+    --gold-light: #FDF3D9;
+    --light-bg: #F4F5F6;
+    --border: #DDE1E4;
+    --text: #2C3E50;
+    --text-light: #6B7A8D;
+    --white: #FFFFFF;
+    --success: #27AE60;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    background: var(--light-bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-gold-bar {
+    background: var(--gold);
+    text-align: center;
+    padding: 8px 24px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .header-main {
+    padding: 48px 40px 40px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header-eyebrow {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .header-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .header-meta span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-meta span::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .header-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.04);
+    border-radius: 0 6px 6px 0;
+  }
+  .anon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    background: rgba(240,180,41,0.12);
+    border: 1px solid rgba(240,180,41,0.3);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .anon-badge::before { content: '🔒'; font-size: 11px; }
+
+  /* ── Form container ── */
+  .form-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── Section headers ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 24px;
+  }
+  .section-header:first-of-type { margin-top: 0; }
+  .section-num {
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .card:focus-within {
+    box-shadow: 0 0 0 2px var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ── Question label ── */
+  .q-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .q-hint {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .required { color: var(--gold); margin-left: 2px; }
+
+  /* ── Radio / Checkbox groups ── */
+  .option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option-group.inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .option input[type="radio"],
+  .option input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+  }
+  .option input[type="checkbox"] { border-radius: 4px; }
+  .option input[type="radio"]:checked,
+  .option input[type="checkbox"]:checked {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+  .option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .option input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .option-label {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .option input:checked + .option-label {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ── Pill options (for role selection) ── */
+  .pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    position: relative;
+  }
+  .pill input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .pill-label {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    font-size: 13.5px;
+    color: var(--slate);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 400;
+    background: var(--white);
+  }
+  .pill input:checked + .pill-label {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+  }
+  .pill-label:hover {
+    border-color: var(--slate);
+    color: var(--navy);
+  }
+
+  /* ── Star rating ── */
+  .rating-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .rating-table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    padding: 8px 4px;
+    text-align: center;
+  }
+  .rating-table thead th:first-child { text-align: left; padding-left: 0; }
+  .rating-table tbody tr {
+    border-top: 1px solid var(--light-bg);
+  }
+  .rating-table tbody tr:first-child { border-top: none; }
+  .rating-table td {
+    padding: 12px 4px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .rating-table td:first-child {
+    text-align: left;
+    font-size: 14px;
+    color: var(--text);
+    padding-left: 0;
+    padding-right: 16px;
+    width: 45%;
+  }
+  .star-radio { display: none; }
+  .star-row { display: flex; justify-content: center; gap: 4px; }
+  .rating-stars { display: flex; flex-direction: row-reverse; gap: 4px; justify-content: center; }
+  .rating-stars input { display: none; }
+  .rating-stars label {
+    font-size: 22px;
+    color: var(--border);
+    cursor: pointer;
+    transition: color 0.1s;
+    line-height: 1;
+  }
+  .rating-stars label:hover,
+  .rating-stars label:hover ~ label,
+  .rating-stars input:checked ~ label {
+    color: var(--gold);
+  }
+
+  /* Scale rating (1–5 number row) */
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 12px;
+  }
+  .scale-label {
+    font-size: 12px;
+    color: var(--text-light);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .scale-options {
+    display: flex;
+    gap: 8px;
+    margin: 0 12px;
+    flex: 1;
+    justify-content: center;
+  }
+  .scale-opt { position: relative; }
+  .scale-opt input { position: absolute; opacity: 0; }
+  .scale-opt label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--slate);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .scale-opt input:checked + label {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+  .scale-opt label:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+
+  /* ── Textarea ── */
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.15s;
+    background: var(--white);
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+  textarea::placeholder { color: #B0BBC6; }
+
+  /* ── Text input ── */
+  input[type="email"], input[type="text"] {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    transition: border-color 0.15s;
+    background: var(--white);
+  }
+  input[type="email"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--navy);
+  }
+  input::placeholder { color: #B0BBC6; }
+
+  /* ── Sessions attended ── */
+  .sessions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 500px) { .sessions-grid { grid-template-columns: 1fr; } }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── Submit ── */
+  .submit-area {
+    text-align: center;
+    padding-top: 16px;
+  }
+  .submit-btn {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 15px 48px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(240,180,41,0.15);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .submit-btn:hover { background: #243656; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(27,42,71,0.25); }
+  .submit-btn:hover::after { opacity: 1; }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* ── Success state ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 28px;
+  }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .success-body { font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+  /* ── Optional opt-in card ── */
+  .optin-card {
+    background: var(--gold-light);
+    border: 1px solid rgba(240,180,41,0.35);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .optin-card .q-label { color: var(--navy-mid); }
+
+  /* ── Progress bar ── */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1);
+    height: 3px;
+    width: 100%;
+  }
+  .progress-bar {
+    height: 3px;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .header-main { padding: 32px 20px 28px; }
+    .card { padding: 20px; }
+    .form-wrap { padding: 32px 16px 60px; }
+    .rating-table td:first-child { width: 35%; font-size: 13px; }
+    .rating-stars label { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-gold-bar">University of British Columbia &nbsp;•&nbsp; School of Kinesiology</div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="header-main">
+    <div class="header-eyebrow">Kinesiology Graduate Student Society (KGSS)</div>
+    <div class="header-title">KIN Graduate Research Day</div>
+    <div class="header-subtitle">Feedback Survey</div>
+    <div class="header-meta">
+      <span>May 7, 2026</span>
+      <span>Gateway Room 1004</span>
+      <span>~5 minutes</span>
+    </div>
+    <div class="header-desc">
+      Thank you for attending KIN Graduate Research Day. This survey will help the Kinesiology Graduate Student Society improve future events. We appreciate your honest feedback and recommendations.
+    </div>
+    <div class="anon-badge">Anonymous &amp; Confidential</div>
+  </div>
+</header>
+
+<div class="form-wrap">
+<form id="surveyForm" onsubmit="handleSubmit(event)" action="https://formspree.io/f/mkoywojq" method="POST">
+  <input type="hidden" name="_subject" value="KIN Graduate Research Day 2026 — Feedback Submission">
+  <input type="hidden" name="_next" value="false">
+
+  <!-- ══════════════════════════════════
+       SECTION 1 — About You
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">About You</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Q1: Role -->
+  <div class="card">
+    <label class="q-label">What is your role at UBC?<span class="required">*</span></label>
+    <p class="q-hint">Select all that apply.</p>
+    <div class="pill-group">
+      <div class="pill"><input type="checkbox" name="role" id="r1" value="MSc Student"><label class="pill-label" for="r1">MSc Student</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r2" value="PhD Student"><label class="pill-label" for="r2">PhD Student</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r3" value="Postdoctoral Researcher"><label class="pill-label" for="r3">Postdoctoral Researcher</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r4" value="Faculty"><label class="pill-label" for="r4">Faculty</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r5" value="Staff"><label class="pill-label" for="r5">Staff</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r6" value="Undergraduate Student"><label class="pill-label" for="r6">Undergraduate Student</label></div>
+      <div class="pill"><input type="checkbox" name="role" id="r7" value="External Guest"><label class="pill-label" for="r7">External Guest</label></div>
+    </div>
+  </div>
+
+  <!-- Q2: Attendance type -->
+  <div class="card">
+    <label class="q-label">How did you participate today?<span class="required">*</span></label>
+    <div class="pill-group">
+      <div class="pill"><input type="radio" name="participation" id="p1" value="Presenter only"><label class="pill-label" for="p1">Presenter only</label></div>
+      <div class="pill"><input type="radio" name="participation" id="p2" value="Attendee only"><label class="pill-label" for="p2">Attendee only</label></div>
+      <div class="pill"><input type="radio" name="participation" id="p3" value="Both presenter and attendee"><label class="pill-label" for="p3">Both — presenter &amp; attendee</label></div>
+      <div class="pill"><input type="radio" name="participation" id="p4" value="Volunteer / organizer"><label class="pill-label" for="p4">Volunteer / Organizer</label></div>
+      <div class="pill"><input type="radio" name="participation" id="p5" value="Panelist"><label class="pill-label" for="p5">Panelist</label></div>
+    </div>
+  </div>
+
+  <!-- Q3: Sessions attended -->
+  <div class="card">
+    <label class="q-label">Which sessions did you attend?</label>
+    <p class="q-hint">Select all that apply — this helps us understand which sessions your ratings reflect.</p>
+    <div class="sessions-grid">
+      <div class="option"><input type="checkbox" id="s1" name="sessions" value="Session 1 — 3-Minute Thesis (Morning)"><label class="option-label" for="s1">Session 1 — 3-Minute Thesis (AM)</label></div>
+      <div class="option"><input type="checkbox" id="s2" name="sessions" value="Session 2 — 10-Minute Oral (Morning)"><label class="option-label" for="s2">Session 2 — 10-Minute Oral (AM)</label></div>
+      <div class="option"><input type="checkbox" id="s3" name="sessions" value="Interdisciplinary Panel"><label class="option-label" for="s3">Interdisciplinary Panel</label></div>
+      <div class="option"><input type="checkbox" id="s4" name="sessions" value="Poster Session / Lunch"><label class="option-label" for="s4">Poster Session &amp; Lunch</label></div>
+      <div class="option"><input type="checkbox" id="s5" name="sessions" value="Session 3 — 10-Minute Oral (Afternoon)"><label class="option-label" for="s5">Session 3 — 10-Minute Oral (PM)</label></div>
+      <div class="option"><input type="checkbox" id="s6" name="sessions" value="Session 4 — 3-Minute Thesis (Afternoon)"><label class="option-label" for="s6">Session 4 — 3-Minute Thesis (PM)</label></div>
+      <div class="option"><input type="checkbox" id="s7" name="sessions" value="Session 5 — 10-Minute Oral (Late Afternoon)"><label class="option-label" for="s7">Session 5 — 10-Minute Oral (Late PM)</label></div>
+      <div class="option"><input type="checkbox" id="s8" name="sessions" value="Full day"><label class="option-label" for="s8">Full day</label></div>
+    </div>
+  </div>
+
+  <!-- Q4: How did you hear -->
+  <div class="card">
+    <label class="q-label">How did you hear about KIN Graduate Research Day?</label>
+    <div class="option-group">
+      <div class="option"><input type="radio" name="heard" id="h1" value="Email from KGSS"><label class="option-label" for="h1">Email from KGSS</label></div>
+      <div class="option"><input type="radio" name="heard" id="h2" value="Supervisor / faculty member"><label class="option-label" for="h2">Supervisor / faculty member</label></div>
+      <div class="option"><input type="radio" name="heard" id="h3" value="Peer / colleague"><label class="option-label" for="h3">Peer / colleague</label></div>
+      <div class="option"><input type="radio" name="heard" id="h4" value="Department notice board or website"><label class="option-label" for="h4">Department notice board or website</label></div>
+      <div class="option"><input type="radio" name="heard" id="h5" value="Social media"><label class="option-label" for="h5">Social media</label></div>
+      <div class="option"><input type="radio" name="heard" id="h6" value="I was a presenter / panelist"><label class="option-label" for="h6">I was a presenter / panelist</label></div>
+      <div class="option"><input type="radio" name="heard" id="h7" value="Other"><label class="option-label" for="h7">Other</label></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 2 — Overall Experience
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Overall Experience</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Q5: Overall satisfaction -->
+  <div class="card">
+    <label class="q-label">Overall, how satisfied were you with KIN Graduate Research Day?<span class="required">*</span></label>
+    <p class="q-hint">1 = Very dissatisfied &nbsp;·&nbsp; 5 = Very satisfied</p>
+    <div class="scale-row">
+      <span class="scale-label">Very dissatisfied</span>
+      <div class="scale-options">
+        <div class="scale-opt"><input type="radio" name="overall" id="o1" value="1"><label for="o1">1</label></div>
+        <div class="scale-opt"><input type="radio" name="overall" id="o2" value="2"><label for="o2">2</label></div>
+        <div class="scale-opt"><input type="radio" name="overall" id="o3" value="3"><label for="o3">3</label></div>
+        <div class="scale-opt"><input type="radio" name="overall" id="o4" value="4"><label for="o4">4</label></div>
+        <div class="scale-opt"><input type="radio" name="overall" id="o5" value="5"><label for="o5">5</label></div>
+      </div>
+      <span class="scale-label">Very satisfied</span>
+    </div>
+  </div>
+
+  <!-- Q6: Ratings table -->
+  <div class="card">
+    <label class="q-label">Please rate the following aspects of today's event.<span class="required">*</span></label>
+    <p class="q-hint">★ = Poor &nbsp;·&nbsp; ★★★★★ = Excellent</p>
+    <table class="rating-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>★</th><th>★★</th><th>★★★</th><th>★★★★</th><th>★★★★★</th>
+        </tr>
+      </thead>
+      <tbody id="ratingsBody">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 3 — Content & Programming
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Content &amp; Programming</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Q7: What worked well -->
+  <div class="card">
+    <label class="q-label" for="worked">What worked particularly well?</label>
+    <p class="q-hint">Think about sessions, format, scheduling, networking, or anything that stood out positively.</p>
+    <textarea id="worked" name="worked" rows="4" placeholder="e.g. The interdisciplinary panel was engaging and well-moderated..."></textarea>
+  </div>
+
+  <!-- Q8: What could improve -->
+  <div class="card">
+    <label class="q-label" for="improve">What could be improved for future Graduate Research Days?</label>
+    <textarea id="improve" name="improve" rows="4" placeholder="e.g. More time for Q&A after presentations..."></textarea>
+  </div>
+
+  <!-- Q9: Future suggestions -->
+  <div class="card">
+    <label class="q-label" for="suggestions">Do you have suggestions for future themes, sessions, formats, or speakers?</label>
+    <textarea id="suggestions" name="suggestions" rows="4" placeholder="e.g. A workshop on academic writing, an industry panel, keynote speaker ideas..."></textarea>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 4 — Inclusion & Accessibility
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Inclusion &amp; Accessibility</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Q10: Physical/logistical accessibility -->
+  <div class="card">
+    <label class="q-label" for="access-logistics">How accessible was today's event in terms of physical space, dietary accommodations, or other logistical needs?</label>
+    <p class="q-hint">e.g. Venue accessibility, food options, signage, scheduling.</p>
+    <textarea id="access-logistics" name="access_logistics" rows="3" placeholder="Your feedback helps us make future events more accessible for everyone..."></textarea>
+  </div>
+
+  <!-- Q11: Programmatic inclusion -->
+  <div class="card">
+    <label class="q-label" for="access-program">Do you have suggestions for improving representation, diversity, or inclusion in the program itself?</label>
+    <p class="q-hint">e.g. Speaker diversity, research topics represented, languages, Indigenous inclusion.</p>
+    <textarea id="access-program" name="access_program" rows="3" placeholder="e.g. Greater representation of community-based research, multilingual resources..."></textarea>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SECTION 5 — Anything Else
+  ══════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Anything Else?</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Q12: Additional comments -->
+  <div class="card">
+    <label class="q-label" for="comments">Any additional comments or feedback?</label>
+    <textarea id="comments" name="comments" rows="4" placeholder="Anything else you'd like to share with the KGSS..."></textarea>
+  </div>
+
+  <!-- Q13: Follow-up opt-in -->
+  <div class="optin-card">
+    <label class="q-label">Would you be willing to be contacted for further feedback or involvement in future planning?</label>
+    <p class="q-hint">This is entirely optional. Providing your email below means this response will no longer be fully anonymous.</p>
+    <div class="option-group" style="margin-bottom: 16px;">
+      <div class="option">
+        <input type="radio" name="optin" id="opt1" value="yes" onchange="toggleEmail(true)">
+        <label class="option-label" for="opt1">Yes, I'm happy to be contacted</label>
+      </div>
+      <div class="option">
+        <input type="radio" name="optin" id="opt2" value="no" onchange="toggleEmail(false)" checked>
+        <label class="option-label" for="opt2">No, I prefer to remain anonymous</label>
+      </div>
+    </div>
+    <div id="emailField" style="display:none;">
+      <label class="q-label" for="emailInput" style="font-size:13px; margin-bottom:8px;">Email address</label>
+      <input type="email" id="emailInput" name="email" placeholder="yourname@ubc.ca">
+    </div>
+  </div>
+
+  <div class="submit-area">
+    <button type="submit" class="submit-btn">Submit Feedback</button>
+    <p class="submit-note">Your response will be shared only with the KGSS organizing committee.</p>
+  </div>
+
+</form>
+
+<!-- Success screen -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">🎓</div>
+  <div class="success-title">Thank you!</div>
+  <p class="success-body">Your feedback has been submitted. The KGSS truly values your input — it directly shapes how we plan future Graduate Research Days.<br><br>We hope to see you again next year.</p>
+</div>
+
+</div><!-- /form-wrap -->
+
+<script>
+  // Rating aspects
+  const aspects = [
+    'Overall organization & logistics',
+    'Quality of oral presentations',
+    'Quality of poster presentations',
+    'Interdisciplinary panel',
+    'Scheduling & pacing',
+    'Venue & facilities',
+    'Catering & refreshments',
+    'Networking opportunities',
+    'Communication & promotion leading up to the event',
+  ];
+
+  // Build ratings table
+  const tbody = document.getElementById('ratingsBody');
+  aspects.forEach((aspect, i) => {
+    const tr = document.createElement('tr');
+    let cells = `<td>${aspect}</td>`;
+    for (let v = 1; v <= 5; v++) {
+      cells += `<td>
+        <div class="rating-stars" style="flex-direction:row; gap:0;">
+          <input type="radio" name="rating_${i}" id="r_${i}_${v}" value="${v}">
+          <label for="r_${i}_${v}" title="${v} star${v>1?'s':''}">★</label>
+        </div>
+      </td>`;
+    }
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+  });
+
+  // Rebuild star logic (forward order, highlight on select)
+  document.querySelectorAll('.rating-stars').forEach(group => {
+    const stars = group.querySelectorAll('label');
+    const inputs = group.querySelectorAll('input');
+    inputs.forEach((input, idx) => {
+      input.addEventListener('change', () => {
+        stars.forEach((s, si) => {
+          s.style.color = si <= idx ? 'var(--gold)' : 'var(--border)';
+        });
+      });
+    });
+    stars.forEach((star, idx) => {
+      star.addEventListener('mouseover', () => {
+        stars.forEach((s, si) => {
+          s.style.color = si <= idx ? 'var(--gold)' : 'var(--border)';
+        });
+      });
+      star.addEventListener('mouseout', () => {
+        const checked = group.querySelector('input:checked');
+        if (checked) {
+          const ci = Array.from(inputs).indexOf(checked);
+          stars.forEach((s, si) => {
+            s.style.color = si <= ci ? 'var(--gold)' : 'var(--border)';
+          });
+        } else {
+          stars.forEach(s => s.style.color = 'var(--border)');
+        }
+      });
+    });
+  });
+
+  // Progress bar
+  function updateProgress() {
+    const required = document.querySelectorAll('[required], [name="overall"], [name="participation"]');
+    const form = document.getElementById('surveyForm');
+    const all = form.querySelectorAll('input, textarea, select');
+    let filled = 0;
+    const counted = new Set();
+    all.forEach(el => {
+      const name = el.name || el.id;
+      if (counted.has(name)) return;
+      if (el.type === 'radio' || el.type === 'checkbox') {
+        if (form.querySelector(`[name="${el.name}"]:checked`)) {
+          counted.add(el.name); filled++;
+        }
+      } else if (el.value.trim()) {
+        counted.add(name); filled++;
+      }
+    });
+    const total = 13;
+    document.getElementById('progressBar').style.width = Math.min(100, (filled / total) * 100) + '%';
+  }
+  document.getElementById('surveyForm').addEventListener('input', updateProgress);
+
+  // Toggle email field
+  function toggleEmail(show) {
+    document.getElementById('emailField').style.display = show ? 'block' : 'none';
+  }
+
+  // Submit via Formspree fetch
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('surveyForm');
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+
+    // Collect checkbox groups as comma-separated strings
+    ['role', 'sessions'].forEach(name => {
+      const checked = [...form.querySelectorAll(`[name="${name}"]:checked`)].map(el => el.value);
+      data.delete(name);
+      if (checked.length) data.append(name, checked.join(', '));
+    });
+
+    try {
+      const res = await fetch('https://formspree.io/f/mkoywojq', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        document.getElementById('progressBar').style.width = '100%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        btn.textContent = 'Submit Feedback';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or contact the KGSS directly.');
+      }
+    } catch (err) {
+      btn.textContent = 'Submit Feedback';
+      btn.disabled = false;
+      alert('Network error. Please check your connection and try again.');
+    }
+  }
+</script>
+</body>
+</html>
