@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — KIN Graduate Research Day 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A47;
+    --navy-mid: #2C3E50;
+    --slate: #4A6274;
+    --gold: #F0B429;
+    --gold-light: #FDF3D9;
+    --light-bg: #F4F5F6;
+    --border: #DDE1E4;
+    --text: #2C3E50;
+    --text-light: #6B7A8D;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    background: var(--light-bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--navy);
+  }
+  .header-gold-bar {
+    background: var(--gold);
+    text-align: center;
+    padding: 8px 24px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .header-main {
+    padding: 48px 40px 44px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .header-eyebrow {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .header-meta {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .header-meta span::before {
+    content: '•';
+    color: var(--gold);
+    margin-right: 8px;
+  }
+
+  /* ── Page body ── */
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Primary contact card ── */
+  .contact-card {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+  .contact-card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .contact-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .contact-card-body {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 24px;
+    max-width: 520px;
+  }
+  .email-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .email-btn:hover {
+    background: #f5c542;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(240,180,41,0.35);
+  }
+  .email-btn svg {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ── Section heading ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 24px;
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── Committee grid ── */
+  .committee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .member-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .member-card:hover {
+    box-shadow: 0 4px 16px rgba(27,42,71,0.08);
+    border-color: var(--slate);
+  }
+  .member-card.highlight {
+    border-color: var(--gold);
+    background: var(--gold-light);
+  }
+  .member-card.highlight:hover {
+    box-shadow: 0 4px 16px rgba(240,180,41,0.2);
+  }
+  .member-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .member-card.highlight .member-avatar {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .member-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .member-role {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+  .member-card.highlight .member-role {
+    color: var(--slate);
+  }
+
+  /* ── Kay contact card ── */
+  .kay-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+  .kay-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--gold);
+  }
+  .kay-avatar-lg {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .kay-info { flex: 1; }
+  .kay-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .kay-role {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .kay-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 2px;
+    transition: color 0.15s;
+  }
+  .email-link:hover { color: var(--slate); }
+  .email-link svg { width: 14px; height: 14px; }
+
+  /* ── Footer ── */
+  .page-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .page-footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .header-main { padding: 32px 20px 28px; }
+    .contact-card { padding: 28px 22px; }
+    .kay-card { flex-direction: column; gap: 16px; }
+    .committee-grid { grid-template-columns: 1fr 1fr; }
+    .page-wrap { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-gold-bar">University of British Columbia &nbsp;•&nbsp; School of Kinesiology</div>
+  <div class="header-main">
+    <div class="header-eyebrow">KIN Graduate Research Day 2026</div>
+    <div class="header-title">Contact &amp; Committee</div>
+    <div class="header-meta">
+      <span>May 7, 2026</span>
+      <span>Gateway Room 1004</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+  <!-- ── Primary KGSS contact ── -->
+  <div class="contact-card">
+    <div class="contact-card-label">General Inquiries</div>
+    <div class="contact-card-title">Have a question about the event?</div>
+    <div class="contact-card-body">
+      Contact the KGSS committee for any questions pertaining to KIN Graduate Research Day. We're happy to help.
+    </div>
+    <a href="mailto:kgss.ubc@gmail.com" class="email-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      kgss.ubc@gmail.com
+    </a>
+  </div>
+
+  <!-- ── Kay's card ── -->
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <div class="section-title">Equity &amp; Engagement</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="kay-card">
+    <div class="kay-avatar-lg">KA</div>
+    <div class="kay-info">
+      <div class="kay-name">Kay Anderson</div>
+      <div class="kay-role">Equity &amp; Engagement Representative &nbsp;·&nbsp; Subcommittee Member &nbsp;·&nbsp; they/them</div>
+      <div class="kay-desc">
+        Kay created the KIN Graduate Research Day website and feedback survey. If you have any questions about equity, inclusion, or representation at this event — or anything else you'd like to discuss — Kay welcomes you to reach out directly.
+      </div>
+      <a href="mailto:kay.anderson@ubc.ca" class="email-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        kay.anderson@ubc.ca
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Subcommittee ── -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">KGSS GRD Subcommittee</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="committee-grid">
+
+    <div class="member-card">
+      <div class="member-avatar">KA</div>
+      <div>
+        <div class="member-name">Kay Anderson</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; they/them</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">MA</div>
+      <div>
+        <div class="member-name">Michael Akcan</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; he/him</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">SA</div>
+      <div>
+        <div class="member-name">Stef Atkinson</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; she/her</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">ER</div>
+      <div>
+        <div class="member-name">Emmarie Racine Hallin</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; she/her</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">BR</div>
+      <div>
+        <div class="member-name">Brooklynn Ratzlaff</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; she/her</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">MT</div>
+      <div>
+        <div class="member-name">Megan Tomyn</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; she/her</div>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <div class="member-avatar">LZ</div>
+      <div>
+        <div class="member-name">Leo Zhu</div>
+        <div class="member-role">Subcommittee Member &nbsp;·&nbsp; he/him</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Kinesiology Graduate Student Society (KGSS) &nbsp;·&nbsp; University of British Columbia<br>
+    KIN Graduate Research Day 2026 &nbsp;·&nbsp; Gateway Room 1004 &nbsp;·&nbsp; May 7, 2026<br><br>
+    Website &amp; survey created by <a href="mailto:kay.anderson@ubc.ca">Kay Anderson</a>, Equity &amp; Engagement Representative
+  </div>
+
+</div>
+
+</body>
+</html>
