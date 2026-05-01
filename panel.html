@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interdisciplinary Panel — KIN Graduate Research Day 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A47;
+    --navy-mid: #2C3E50;
+    --slate: #4A6274;
+    --gold: #F0B429;
+    --gold-light: #FDF3D9;
+    --light-bg: #F4F5F6;
+    --border: #DDE1E4;
+    --text: #2C3E50;
+    --text-light: #6B7A8D;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; font-weight: 300; background: var(--light-bg); color: var(--text); }
+
+  /* Header */
+  .header { background: var(--navy); }
+  .gold-bar { background: var(--gold); text-align: center; padding: 8px 24px; font-weight: 600; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); }
+  .header-main { padding: 48px 40px 44px; max-width: 960px; margin: 0 auto; }
+  .eyebrow { font-weight: 600; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
+  .header-meta { font-size: 14px; color: rgba(255,255,255,0.5); display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+  .header-meta span::before { content: '•'; color: var(--gold); margin-right: 8px; }
+  .header-desc {
+    font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.68);
+    max-width: 600px; padding: 16px 20px;
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.04);
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Page wrap */
+  .page-wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* Section heading */
+  .section-header { display: flex; align-items: center; gap: 14px; margin: 0 0 32px; }
+  .section-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* Panelist grid */
+  .panelist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .panelist-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .panelist-card:hover {
+    box-shadow: 0 8px 32px rgba(27,42,71,0.12);
+    transform: translateY(-2px);
+  }
+
+  .panelist-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    background: var(--light-bg);
+  }
+
+  .panelist-info { padding: 22px 24px 24px; }
+
+  .panelist-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .panelist-gold-bar {
+    width: 32px; height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin: 8px 0 10px;
+  }
+
+  .panelist-discipline {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* About section */
+  .about-card {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  .about-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .about-text { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.7); }
+
+  /* Footer */
+  .page-footer { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 48px; font-size: 12px; color: var(--text-light); text-align: center; line-height: 1.8; }
+
+  @media (max-width: 640px) {
+    .header-main { padding: 32px 20px 28px; }
+    .panelist-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .panelist-info { padding: 16px; }
+    .panelist-name { font-size: 16px; }
+    .about-card { padding: 24px 22px; }
+    .page-wrap { padding: 32px 16px 60px; }
+  }
+  @media (max-width: 400px) {
+    .panelist-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="gold-bar">University of British Columbia &nbsp;•&nbsp; School of Kinesiology</div>
+  <div class="header-main">
+    <div class="eyebrow">KIN Graduate Research Day 2026</div>
+    <div class="header-title">Interdisciplinary Panel</div>
+    <div class="header-meta">
+      <span>11:15 AM – 12:30 PM</span>
+      <span>Gateway Room 1004</span>
+      <span>May 7, 2026</span>
+    </div>
+    <div class="header-desc">
+      This panel brings together researchers from diverse disciplines to explore how interdisciplinary approaches advance knowledge, strengthen collaboration, and drive impact in kinesiology.
+    </div>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">Meet the Panelists</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="panelist-grid">
+
+    <div class="panelist-card">
+      <img class="panelist-photo" src="jesse-charlton.png" alt="Dr. Jesse Charlton">
+      <div class="panelist-info">
+        <div class="panelist-name">Dr. Jesse Charlton</div>
+        <div class="panelist-gold-bar"></div>
+        <div class="panelist-discipline">Applied Musculoskeletal Biomechanics</div>
+      </div>
+    </div>
+
+    <div class="panelist-card">
+      <img class="panelist-photo" src="jasmin-ma.png" alt="Dr. Jasmin Ma">
+      <div class="panelist-info">
+        <div class="panelist-name">Dr. Jasmin Ma</div>
+        <div class="panelist-gold-bar"></div>
+        <div class="panelist-discipline">Leadership Education &amp; Sport Psychology</div>
+      </div>
+    </div>
+
+    <div class="panelist-card">
+      <img class="panelist-photo" src="cailie-mcguire.jpg" alt="Dr. Cailie McGuire">
+      <div class="panelist-info">
+        <div class="panelist-name">Dr. Cailie McGuire</div>
+        <div class="panelist-gold-bar"></div>
+        <div class="panelist-discipline">Sport Psychology &amp; Team Dynamics</div>
+      </div>
+    </div>
+
+    <div class="panelist-card">
+      <img class="panelist-photo" src="janice-forsyth.png" alt="Dr. Janice Forsyth">
+      <div class="panelist-info">
+        <div class="panelist-name">Dr. Janice Forsyth</div>
+        <div class="panelist-gold-bar"></div>
+        <div class="panelist-discipline">Indigenous Land-Based Physical Culture &amp; Wellness</div>
+      </div>
+    </div>
+
+    <div class="panelist-card">
+      <img class="panelist-photo" src="dan-gamu.png" alt="Dr. Daniel Gamu">
+      <div class="panelist-info">
+        <div class="panelist-name">Dr. Daniel Gamu</div>
+        <div class="panelist-gold-bar"></div>
+        <div class="panelist-discipline">Systems Biology, Exercise and Health</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="about-card">
+    <div class="about-label">About This Panel</div>
+    <div class="about-text">
+      The Interdisciplinary Panel brings together five researchers whose work spans biomechanics, sport psychology, leadership, Indigenous studies, and systems biology. Together, they will explore how collaboration across disciplines can advance our understanding of human movement, health, and performance — and what it means to do kinesiology research that is inclusive, innovative, and impactful.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    Kinesiology Graduate Student Society (KGSS) &nbsp;·&nbsp; University of British Columbia<br>
+    KIN Graduate Research Day 2026 &nbsp;·&nbsp; Gateway Room 1004 &nbsp;·&nbsp; May 7, 2026
+  </div>
+
+</div>
+</body>
+</html>

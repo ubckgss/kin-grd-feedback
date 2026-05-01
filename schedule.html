@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schedule — KIN Graduate Research Day 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A47;
+    --navy-mid: #2C3E50;
+    --slate: #4A6274;
+    --gold: #F0B429;
+    --gold-light: #FDF3D9;
+    --light-bg: #F4F5F6;
+    --border: #DDE1E4;
+    --text: #2C3E50;
+    --text-light: #6B7A8D;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; font-weight: 300; background: var(--light-bg); color: var(--text); }
+
+  /* Header */
+  .header { background: var(--navy); }
+  .gold-bar { background: var(--gold); text-align: center; padding: 8px 24px; font-weight: 600; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); }
+  .header-main { padding: 48px 40px 44px; max-width: 860px; margin: 0 auto; }
+  .eyebrow { font-weight: 600; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .header-meta { font-size: 14px; color: rgba(255,255,255,0.5); display: flex; gap: 20px; flex-wrap: wrap; }
+  .header-meta span::before { content: '•'; color: var(--gold); margin-right: 8px; }
+
+  /* Page wrap */
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* PDF button */
+  .pdf-banner {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .pdf-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  .pdf-banner-text h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 6px; }
+  .pdf-banner-text p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .pdf-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--navy);
+    text-decoration: none; font-weight: 700; font-size: 14px;
+    letter-spacing: 0.03em; padding: 13px 26px; border-radius: 8px;
+    white-space: nowrap; transition: all 0.2s; flex-shrink: 0;
+  }
+  .pdf-btn:hover { background: #f5c542; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(240,180,41,0.35); }
+  .pdf-btn svg { width: 18px; height: 18px; }
+
+  /* Section heading */
+  .section-header { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; }
+  .section-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* Day block */
+  .day-header { background: var(--navy-mid); border-radius: 8px 8px 0 0; padding: 14px 24px; margin-top: 28px; }
+  .day-header:first-of-type { margin-top: 0; }
+  .day-label { font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+
+  /* Schedule rows */
+  .schedule-block { background: var(--white); border: 1px solid var(--border); border-top: none; margin-bottom: 0; }
+  .schedule-block:last-child { border-radius: 0 0 8px 8px; margin-bottom: 24px; }
+
+  .row { display: flex; align-items: stretch; border-bottom: 1px solid var(--border); }
+  .row:last-child { border-bottom: none; }
+
+  .row-time {
+    width: 190px; flex-shrink: 0;
+    padding: 14px 18px;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--slate);
+    border-right: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .row-content { flex: 1; padding: 14px 20px; display: flex; align-items: center; }
+  .row-label { font-size: 15px; font-weight: 600; color: var(--navy); }
+  .row-sub { font-size: 13px; color: var(--text-light); margin-top: 3px; }
+
+  /* Break rows */
+  .row.break { background: #EDF1F5; }
+  .row.break .row-label { font-weight: 400; color: var(--text-light); font-style: italic; }
+
+  /* Session rows */
+  .row.session { background: var(--white); }
+  .row.session .row-time { border-left: 3px solid var(--gold); }
+  .row.session .row-label { color: var(--navy); }
+
+  /* Special rows */
+  .row.panel { background: #2C3E50; }
+  .row.panel .row-time { color: var(--gold); border-right-color: rgba(255,255,255,0.1); }
+  .row.panel .row-label { color: var(--white); }
+  .row.panel .row-sub { color: rgba(255,255,255,0.55); }
+
+  .row.lunch { background: var(--navy); }
+  .row.lunch .row-time { color: var(--gold); border-right-color: rgba(255,255,255,0.1); }
+  .row.lunch .row-label { color: var(--white); }
+  .row.lunch .row-sub { color: rgba(255,255,255,0.5); }
+
+  .row.closing { background: var(--navy); }
+  .row.closing .row-time { color: var(--gold); border-right-color: rgba(255,255,255,0.1); }
+  .row.closing .row-label { color: var(--white); }
+
+  /* Session chip */
+  .chip {
+    display: inline-block; margin-left: 10px;
+    background: var(--slate); color: var(--white);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+    padding: 3px 10px; border-radius: 20px;
+    vertical-align: middle;
+  }
+
+  /* Footer */
+  .page-footer { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 40px; font-size: 12px; color: var(--text-light); text-align: center; line-height: 1.8; }
+
+  @media (max-width: 600px) {
+    .header-main { padding: 32px 20px 28px; }
+    .row-time { width: 130px; font-size: 12px; padding: 12px 12px; }
+    .pdf-banner { flex-direction: column; }
+    .page-wrap { padding: 28px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="gold-bar">University of British Columbia &nbsp;•&nbsp; School of Kinesiology</div>
+  <div class="header-main">
+    <div class="eyebrow">KIN Graduate Research Day 2026</div>
+    <div class="header-title">Schedule At a Glance</div>
+    <div class="header-meta">
+      <span>May 7, 2026</span>
+      <span>Gateway Room 1004</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+  <!-- PDF Banner -->
+  <div class="pdf-banner">
+    <div class="pdf-banner-text">
+      <h3>Full Program &amp; Abstract Booklet</h3>
+      <p>View presenter names, research titles, and full abstracts for all sessions.</p>
+    </div>
+    <a href="KIN_GradResearchDay2026_Program_Final.pdf" target="_blank" class="pdf-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9,15 12,18 15,15"/>
+      </svg>
+      Open Full Program (PDF)
+    </a>
+  </div>
+
+  <!-- Schedule -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">Program Overview</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- MORNING -->
+  <div class="day-header"><div class="day-label">Morning</div></div>
+  <div class="schedule-block">
+
+    <div class="row">
+      <div class="row-time">8:00 – 8:45 AM</div>
+      <div class="row-content"><div><div class="row-label">Registration &amp; Breakfast</div></div></div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">8:45 – 8:55 AM</div>
+      <div class="row-content"><div><div class="row-label">Welcome &amp; Opening Remarks</div></div></div>
+    </div>
+
+    <div class="row">
+      <div class="row-time">8:55 – 9:00 AM</div>
+      <div class="row-content"><div><div class="row-label">KTEP Presentation</div></div></div>
+    </div>
+
+    <div class="row session">
+      <div class="row-time">9:00 – 9:35 AM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Session 1 <span class="chip">3-Minute Thesis</span></div>
+          <div class="row-sub">6 presenters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row break">
+      <div class="row-time">9:35 – 9:45 AM</div>
+      <div class="row-content"><div class="row-label">Break (10 min)</div></div>
+    </div>
+
+    <div class="row session">
+      <div class="row-time">9:45 – 11:00 AM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Session 2 <span class="chip">10-Minute Oral</span></div>
+          <div class="row-sub">5 presenters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row break">
+      <div class="row-time">11:00 – 11:15 AM</div>
+      <div class="row-content"><div class="row-label">Break (15 min)</div></div>
+    </div>
+
+    <div class="row panel">
+      <div class="row-time">11:15 AM –<br>12:30 PM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Interdisciplinary Panel</div>
+          <div class="row-sub">Dr. Jesse Charlton &nbsp;•&nbsp; Dr. Jasmin Ma &nbsp;•&nbsp; Dr. Cailie McGuire &nbsp;•&nbsp; Dr. Janice Forsyth &nbsp;•&nbsp; Dr. Daniel Gamu</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row lunch">
+      <div class="row-time">12:30 – 1:30 PM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Lunch &amp; Poster Viewing</div>
+          <div class="row-sub">Gateway B1102</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AFTERNOON -->
+  <div class="day-header"><div class="day-label">Afternoon</div></div>
+  <div class="schedule-block">
+
+    <div class="row session">
+      <div class="row-time">1:30 – 3:00 PM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Session 3 <span class="chip">10-Minute Oral</span></div>
+          <div class="row-sub">6 presenters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row break">
+      <div class="row-time">3:00 – 3:15 PM</div>
+      <div class="row-content"><div class="row-label">Break (15 min)</div></div>
+    </div>
+
+    <div class="row session">
+      <div class="row-time">3:15 – 3:51 PM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Session 4 <span class="chip">3-Minute Thesis</span></div>
+          <div class="row-sub">6 presenters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row break">
+      <div class="row-time">3:51 – 4:01 PM</div>
+      <div class="row-content"><div class="row-label">Break (10 min)</div></div>
+    </div>
+
+    <div class="row session">
+      <div class="row-time">4:01 – 5:01 PM</div>
+      <div class="row-content">
+        <div>
+          <div class="row-label">Session 5 <span class="chip">10-Minute Oral</span></div>
+          <div class="row-sub">4 presenters</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row closing">
+      <div class="row-time">~5:00 PM</div>
+      <div class="row-content"><div class="row-label">Closing Remarks</div></div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Kinesiology Graduate Student Society (KGSS) &nbsp;·&nbsp; University of British Columbia<br>
+    KIN Graduate Research Day 2026 &nbsp;·&nbsp; Gateway Room 1004 &nbsp;·&nbsp; May 7, 2026
+  </div>
+
+</div>
+</body>
+</html>
