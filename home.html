@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIN Graduate Research Day 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A47;
+    --navy-mid: #2C3E50;
+    --slate: #4A6274;
+    --gold: #F0B429;
+    --gold-light: #FDF3D9;
+    --light-bg: #F4F5F6;
+    --border: #DDE1E4;
+    --text: #2C3E50;
+    --text-light: #6B7A8D;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; font-weight: 300; background: var(--light-bg); color: var(--text); }
+
+  /* ── Header ── */
+  .gold-bar { background: var(--gold); text-align: center; padding: 8px 24px; font-weight: 600; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); }
+  .hero { background: var(--navy); padding: 64px 40px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  .hero-eyebrow { font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(16px, 3vw, 22px); font-style: italic; color: rgba(255,255,255,0.55); margin-bottom: 32px; }
+  .hero-chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 24px; padding: 8px 18px; font-size: 13px; color: rgba(255,255,255,0.75); }
+  .chip-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .hero-tagline { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+
+  /* ── Page wrap ── */
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── Section heading ── */
+  .section-header { display: flex; align-items: center; gap: 14px; margin: 48px 0 24px; }
+  .section-header:first-of-type { margin-top: 0; }
+  .section-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--navy); }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── About card ── */
+  .about-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px 36px; margin-bottom: 16px; }
+  .about-card p { font-size: 15px; line-height: 1.8; color: var(--text); margin-bottom: 14px; }
+  .about-card p:last-child { margin-bottom: 0; }
+
+  /* ── Pillars grid ── */
+  .pillars { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
+  .pillar {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px 24px; position: relative; overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .pillar:hover { box-shadow: 0 6px 24px rgba(27,42,71,0.1); transform: translateY(-2px); }
+  .pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
+  .pillar-icon { width: 36px; height: 36px; background: var(--navy); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold); }
+  .pillar-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .pillar-body { font-size: 14px; line-height: 1.7; color: var(--text-light); }
+
+  /* ── Format cards ── */
+  .formats { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; }
+  .format-card { background: var(--navy); border-radius: 10px; padding: 22px 22px; }
+  .format-name { font-weight: 700; font-size: 15px; color: var(--white); margin-bottom: 6px; }
+  .format-detail { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+  .format-tag { display: inline-block; margin-top: 10px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; }
+
+  /* ── Venue card ── */
+  .venue-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+  .venue-icon { width: 48px; height: 48px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .venue-details h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .venue-details p { font-size: 14px; line-height: 1.8; color: var(--text-light); }
+  .venue-details strong { color: var(--text); font-weight: 600; }
+
+  /* ── Land acknowledgement ── */
+  .land-card { background: var(--navy); border-radius: 12px; padding: 32px 36px; position: relative; overflow: hidden; }
+  .land-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+  .land-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .land-text { font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.68); }
+
+  /* ── Footer ── */
+  .page-footer { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 48px; font-size: 12px; color: var(--text-light); text-align: center; line-height: 1.9; }
+  .page-footer a { color: var(--slate); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 44px; }
+    .about-card { padding: 24px 20px; }
+    .page-wrap { padding: 32px 16px 60px; }
+    .land-card { padding: 24px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Top bar + Hero ── -->
+<div class="gold-bar">University of British Columbia &nbsp;•&nbsp; School of Kinesiology</div>
+<div class="hero">
+  <div class="hero-eyebrow">Kinesiology Graduate Student Society (KGSS)</div>
+  <div class="hero-title">KIN Graduate<br>Research Day</div>
+  <div class="hero-subtitle">Created by graduate students, for graduate students.</div>
+  <div class="hero-chips">
+    <div class="chip"><span class="chip-dot"></span>May 7, 2026</div>
+    <div class="chip"><span class="chip-dot"></span>Gateway Health Building</div>
+    <div class="chip"><span class="chip-dot"></span>University of British Columbia</div>
+  </div>
+  <div class="hero-tagline">
+    Grad Research Day provides space to present research and ideas, gain experience, and engage in interdisciplinary dialogue within the School of Kinesiology.
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ── About ── -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">About the Event</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-card">
+    <p>The KIN Graduate Research Day brings together students across research and applied pathways within the School of Kinesiology — including Neuromechanical, Socio-Cultural, Psychological, Biological and Physiological Studies, and the Master of Kinesiology (MKin) program.</p>
+    <p>In our shared space within the Gateway Health Building, this day creates opportunities for dialogue across methodological, theoretical, and applied approaches that may not regularly intersect in day-to-day lab or program life.</p>
+  </div>
+
+  <!-- ── Pillars ── -->
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">I</div>
+      <div class="pillar-title">Interdisciplinary Exchange</div>
+      <div class="pillar-body">Dialogue across neuromechanical, socio-cultural, psychological, and physiological approaches to kinesiology research.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">II</div>
+      <div class="pillar-title">Presentation Experience</div>
+      <div class="pillar-body">Graduate students develop research communication skills through 3-Minute Thesis, oral, and poster presentations.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">III</div>
+      <div class="pillar-title">Community Building</div>
+      <div class="pillar-body">A shared space to connect with peers, faculty, and collaborators across the full breadth of the School of Kinesiology.</div>
+    </div>
+  </div>
+
+  <!-- ── Presentation Formats ── -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">Presentation Formats</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="formats">
+    <div class="format-card">
+      <div class="format-name">3-Minute Thesis</div>
+      <div class="format-detail">Communicate your research clearly and compellingly to a broad audience in just three minutes.</div>
+      <div class="format-tag">Sessions 1 &amp; 4</div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">10-Minute Oral</div>
+      <div class="format-detail">A focused presentation with time for questions and scholarly discussion.</div>
+      <div class="format-tag">Sessions 2, 3 &amp; 5</div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">Poster Session</div>
+      <div class="format-detail">Share your work during lunch in an informal, conversational setting in Gateway B1102.</div>
+      <div class="format-tag">12:30 – 1:30 PM</div>
+    </div>
+    <div class="format-card">
+      <div class="format-name">Interdisciplinary Panel</div>
+      <div class="format-detail">Five researchers explore how cross-disciplinary collaboration advances kinesiology.</div>
+      <div class="format-tag">11:15 AM – 12:30 PM</div>
+    </div>
+  </div>
+
+  <!-- ── Venue ── -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">The Venue</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="venue-card">
+    <div class="venue-icon">UBC</div>
+    <div class="venue-details">
+      <h3>Gateway Health Building</h3>
+      <p>
+        <strong>School of Kinesiology</strong><br>
+        6165 – 5955 University Boulevard<br>
+        Vancouver, BC &nbsp;V6T 1Z1<br><br>
+        Main sessions in <strong>Gateway Room 1004</strong><br>
+        Poster session &amp; lunch in <strong>Gateway B1102</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Land Acknowledgement ── -->
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">Land Acknowledgement</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="land-card">
+    <div class="land-label">Land Acknowledgement</div>
+    <div class="land-text">
+      The Kinesiology Graduate Student Society respectfully acknowledges that the Kinesiology Graduate Research Day is hosted on the traditional, ancestral, and unceded territory of the xʷməθkʷəy̓əm (Musqueam) People. We are grateful to the Musqueam people for their enduring stewardship of these lands and waters, and we recognize the responsibility we share in supporting and respecting Indigenous communities — past, present, and future.<br><br>
+      As members of the School of Kinesiology, we recognize that sport, movement, health, and physical activity have been shaped by colonial histories and frameworks that continue to influence academic knowledge production. We are committed to reflecting on whose bodies, voices, and ways of knowing are centered within our research and to fostering spaces that respect and learn from Indigenous histories, lands, and communities.
+    </div>
+  </div>
+
+  <div class="page-footer">
+    Kinesiology Graduate Student Society (KGSS) &nbsp;·&nbsp; University of British Columbia<br>
+    KIN Graduate Research Day 2026 &nbsp;·&nbsp; Gateway Room 1004 &nbsp;·&nbsp; May 7, 2026<br><br>
+    Questions? <a href="mailto:kgss.ubc@gmail.com">kgss.ubc@gmail.com</a> &nbsp;·&nbsp;
+    Website &amp; survey created by <a href="mailto:kay.anderson@ubc.ca">Kay Anderson</a>, Equity &amp; Engagement Representative
+  </div>
+
+</div>
+</body>
+</html>
