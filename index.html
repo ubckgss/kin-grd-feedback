@@ -303,52 +303,70 @@
   }
 
   /* ── Star rating ── */
-  .rating-table {
-    width: 100%;
-    border-collapse: collapse;
+  /* Likert rating rows */
+  .likert-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-bg);
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  .rating-table thead th {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    padding: 8px 4px;
-    text-align: center;
-  }
-  .rating-table thead th:first-child { text-align: left; padding-left: 0; }
-  .rating-table tbody tr {
-    border-top: 1px solid var(--light-bg);
-  }
-  .rating-table tbody tr:first-child { border-top: none; }
-  .rating-table td {
-    padding: 12px 4px;
-    text-align: center;
-    vertical-align: middle;
-  }
-  .rating-table td:first-child {
-    text-align: left;
+  .likert-row:last-child { border-bottom: none; }
+  .likert-aspect {
     font-size: 14px;
     color: var(--text);
-    padding-left: 0;
+    flex: 1;
+    min-width: 200px;
     padding-right: 16px;
-    width: 45%;
+    line-height: 1.4;
   }
-  .star-radio { display: none; }
-  .star-row { display: flex; justify-content: center; gap: 4px; }
-  .rating-stars { display: flex; flex-direction: row-reverse; gap: 4px; justify-content: center; }
-  .rating-stars input { display: none; }
-  .rating-stars label {
-    font-size: 22px;
-    color: var(--border);
+  .likert-options {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .likert-opt { position: relative; text-align: center; }
+  .likert-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .likert-opt label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     cursor: pointer;
-    transition: color 0.1s;
-    line-height: 1;
+    width: 72px;
   }
-  .rating-stars label:hover,
-  .rating-stars label:hover ~ label,
-  .rating-stars input:checked ~ label {
-    color: var(--gold);
+  .likert-bubble {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate);
+    transition: all 0.15s;
+  }
+  .likert-opt input:checked + label .likert-bubble {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+  .likert-opt label:hover .likert-bubble {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+  .likert-scale-label {
+    font-size: 10px;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.3;
+    word-break: break-word;
+    width: 100%;
   }
 
   /* Scale rating (1–5 number row) */
@@ -669,20 +687,11 @@
     </div>
   </div>
 
-  <!-- Q6: Ratings table -->
+  <!-- Q6: Ratings - Likert bubbles -->
   <div class="card">
     <label class="q-label">Please rate the following aspects of today's event.<span class="required">*</span></label>
-    <p class="q-hint">★ = Poor &nbsp;·&nbsp; ★★★★★ = Excellent</p>
-    <table class="rating-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>★</th><th>★★</th><th>★★★</th><th>★★★★</th><th>★★★★★</th>
-        </tr>
-      </thead>
-      <tbody id="ratingsBody">
-      </tbody>
-    </table>
+    <p class="q-hint">1 = Poor &nbsp;·&nbsp; 2 = Fair &nbsp;·&nbsp; 3 = Average &nbsp;·&nbsp; 4 = Good &nbsp;·&nbsp; 5 = Excellent</p>
+    <div id="ratingsBody" style="margin-top: 12px;"></div>
   </div>
 
   <!-- ══════════════════════════════════
@@ -802,52 +811,29 @@
     'Communication & promotion leading up to the event',
   ];
 
-  // Build ratings table
-  const tbody = document.getElementById('ratingsBody');
-  aspects.forEach((aspect, i) => {
-    const tr = document.createElement('tr');
-    let cells = `<td>${aspect}</td>`;
-    for (let v = 1; v <= 5; v++) {
-      cells += `<td>
-        <div class="rating-stars" style="flex-direction:row; gap:0;">
-          <input type="radio" name="rating_${i}" id="r_${i}_${v}" value="${v}">
-          <label for="r_${i}_${v}" title="${v} star${v>1?'s':''}">★</label>
-        </div>
-      </td>`;
-    }
-    tr.innerHTML = cells;
-    tbody.appendChild(tr);
-  });
+  const labels = ['Poor', 'Fair', 'Average', 'Good', 'Excellent'];
 
-  // Rebuild star logic (forward order, highlight on select)
-  document.querySelectorAll('.rating-stars').forEach(group => {
-    const stars = group.querySelectorAll('label');
-    const inputs = group.querySelectorAll('input');
-    inputs.forEach((input, idx) => {
-      input.addEventListener('change', () => {
-        stars.forEach((s, si) => {
-          s.style.color = si <= idx ? 'var(--gold)' : 'var(--border)';
-        });
-      });
-    });
-    stars.forEach((star, idx) => {
-      star.addEventListener('mouseover', () => {
-        stars.forEach((s, si) => {
-          s.style.color = si <= idx ? 'var(--gold)' : 'var(--border)';
-        });
-      });
-      star.addEventListener('mouseout', () => {
-        const checked = group.querySelector('input:checked');
-        if (checked) {
-          const ci = Array.from(inputs).indexOf(checked);
-          stars.forEach((s, si) => {
-            s.style.color = si <= ci ? 'var(--gold)' : 'var(--border)';
-          });
-        } else {
-          stars.forEach(s => s.style.color = 'var(--border)');
-        }
-      });
-    });
+  // Build Likert bubble rows
+  const container = document.getElementById('ratingsBody');
+  aspects.forEach((aspect, i) => {
+    const row = document.createElement('div');
+    row.className = 'likert-row';
+
+    let optionsHTML = `<div class="likert-options">`;
+    for (let v = 1; v <= 5; v++) {
+      optionsHTML += `
+        <div class="likert-opt">
+          <input type="radio" name="rating_${i}" id="r_${i}_${v}" value="${v}">
+          <label for="r_${i}_${v}">
+            <div class="likert-bubble">${v}</div>
+            <span class="likert-scale-label">${labels[v-1]}</span>
+          </label>
+        </div>`;
+    }
+    optionsHTML += `</div>`;
+
+    row.innerHTML = `<div class="likert-aspect">${aspect}</div>${optionsHTML}`;
+    container.appendChild(row);
   });
 
   // Progress bar
